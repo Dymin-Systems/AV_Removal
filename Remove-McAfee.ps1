@@ -1,9 +1,11 @@
+# This script is designed to download the McAfee Removal tool from github, extract it and run it silently
+# Created by Justin Wilson
+
 $filePath = "C:\temp"
 $fileName = "C:\temp\McAfee_removal.zip"
 $url = "https://github.com/DyminSystems/AV_Removal/raw/main/McAfee_Removal.zip"
 Start-BitsTransfer -source $url -Destination $filepath
 Start-Sleep -s 15
-#This is a test note
 if (test-path -path $fileName){
     Write-host "Found McAfee Removal Tool - Expanding archive"
     Expand-Archive -LiteralPath $fileName -DestinationPath $filePath
