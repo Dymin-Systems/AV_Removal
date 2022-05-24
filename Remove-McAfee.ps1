@@ -1,6 +1,6 @@
 $filePath = "C:\temp"
 $fileName = "C:\temp\McAfee_removal.zip"
-$url = "https://github.com/Dymin-justinw/AV_Removal/raw/main/McAfee_Removal.zip"
+$url = "https://github.com/DyminSystems/AV_Removal/raw/main/McAfee_Removal.zip"
 Start-BitsTransfer -source $url -Destination $filepath
 Start-Sleep -s 15
 
