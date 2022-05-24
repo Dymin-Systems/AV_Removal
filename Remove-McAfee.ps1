@@ -1,14 +1,12 @@
-$filePath = "C:\temp\McAfee_removal\$1\Mccleanup.exe"
-$fileName = "C:\temp\MCPR.exe"
-$url = "http://us.mcafee.com/apps/supporttools/mcpr/mcpr.asp"
-Start-Process -FilePath "C:\Program Files\7-Zip\7z.exe" -ArgumentList "x MCPR.exe", "-oc:\temp\McAfee_removal"
-Start-sleep -s 15
+$filePath = "C:\temp"
+$fileName = "C:\temp\McAfee_removal.zip"
+$url = "https://github.com/Dymin-justinw/AV_Removal/raw/main/McAfee_Removal.zip"
 Start-BitsTransfer -source $url -Destination $filepath
 Start-Sleep -s 15
 
 if (test-path -path $fileName){
     Write-host "Found McAfee Removal Tool - Expanding archive"
-    Expand-Archive -LiteralPath $fileName -DestinationPath c:\temp
+    Expand-Archive -LiteralPath $fileName -DestinationPath $filePath
     Write-Host "Expansion Complete - Attempting to uninstall McAfee..."
     Start-Sleep -s 15
     Set-Location "c:\temp\McAfee_Removal"
