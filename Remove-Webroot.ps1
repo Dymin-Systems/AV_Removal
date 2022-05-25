@@ -6,6 +6,7 @@ while ($Status -ne $null)
 {
     Write-host "Webroot uninstallation in progress..."
     Start-Sleep -S 30
+    $Status = Get-Process notepad -ErrorAction SilentlyContinue
 }
 else
 {
