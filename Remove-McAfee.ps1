@@ -4,11 +4,7 @@
 $filePath = "C:\temp"
 $fileName = "C:\temp\McAfee_removal.zip"
 $url = "https://github.com/DyminSystems/AV_Removal/raw/main/McAfee_Removal.zip"
-$mcafeeServices = Get-Process | where {$_.ProcessName -Like "*mcafee*"} -ErrorAction SilentlyContinue
-if ($mcafeeServices -ne $null)
-{
-    Write-host "McAfee process found beginning uninstallation..."
-    foreach ($mcafeeService in $mcafeeServices){Stop-Process -Name $mcafeeService.ID}
+
     Start-BitsTransfer -source $url -Destination $filepath
     Start-Sleep -s 15
     if (test-path -path $fileName){
@@ -23,11 +19,6 @@ if ($mcafeeServices -ne $null)
         Write-Host "McAfee Removal Tool not found - $($filepath)"
         Write-Host "Exiting..."
     }
-}
-else
-{
-    write-host "McAfee Process not found"
-    write-host "Exiting..."
-    Exit
-}
+
+
 
