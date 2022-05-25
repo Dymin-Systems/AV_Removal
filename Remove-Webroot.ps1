@@ -2,13 +2,13 @@
 #Set-location "C:\Program Files (x86)\Webroot"
 #.\WRSA.exe -uninstall
 $Status = Get-Process notepad -ErrorAction SilentlyContinue
-if($Status -eq $null)
+while ($Status -ne $null)
 {
- Write-host "Webroot uninstall has been completed"
- Exit
+    Write-host "Webroot uninstallation in progress..."
+    Start-Sleep -S 30
 }
 else
 {
- Write-host "Webroot uninstallation in progress..."
- Start-Sleep -S 30
+    write-host "Webroot uninstallation complete."
+    Exit
 }
