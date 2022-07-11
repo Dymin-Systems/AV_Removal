@@ -1,7 +1,7 @@
 ## Check for the Webroot install directory and if found attempts to uninstall
 Write-Host "Checking for Webroot..."
 if (Test-Path -path "C:\Program Files (x86)\Webroot\"){
-    Write-Host "Found Webroot - Attempting uninstall"
+    Write-Host "Found Webroot (x86) - Attempting uninstall"
     Set-Location "C:\Program Files (x86)\Webroot\"
     .\wrsa.exe -uninstall
     Start-Sleep -s 30
@@ -20,7 +20,7 @@ if (Test-Path -path "C:\Program Files (x86)\Webroot\"){
     }
 }
 elseif(Test-Path -path "C:\Program Files\Webroot\"){
-    Write-Host "Found Webroot - Attempting uninstall"
+    Write-Host "Found Webroot (x64) - Attempting uninstall"
     Set-Location "C:\Program Files\Webroot\"
     .\wrsa.exe -uninstall
     Start-Sleep -s 30
