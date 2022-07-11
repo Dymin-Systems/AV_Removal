@@ -19,6 +19,10 @@ if (Test-Path -path "C:\Program Files (x86)\Webroot\"){
             Exit
         }
     }
+    try {
+        Get-WmiObject -Namespace root\SecurityCenter2 -Class AntiVirusProduct | Where-object displayName -Match "Webroot SecureAnywhere" | ForEach-Object{$_.Delete()}
+    }
+    catch{}
 }
 elseif(Test-Path -path "C:\Program Files\Webroot\"){
     Write-Host "Found Webroot (x64) - Attempting uninstall"
@@ -39,6 +43,10 @@ elseif(Test-Path -path "C:\Program Files\Webroot\"){
             Exit
         }
     }
+    try {
+        Get-WmiObject -Namespace root\SecurityCenter2 -Class AntiVirusProduct | Where-object displayName -Match "Webroot SecureAnywhere" | ForEach-Object{$_.Delete()}
+    }
+    catch{}
 }
 else{
     Write-Host "Webroot not found - Exiting"
