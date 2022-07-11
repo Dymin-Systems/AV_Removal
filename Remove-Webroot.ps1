@@ -6,6 +6,7 @@ if (Test-Path -path "C:\Program Files (x86)\Webroot\"){
     .\wrsa.exe -uninstall
     Start-Sleep -s 30
     try{
+        Set-Location "C:\windows\system32"
         Get-process -name "WRSA"
         Stop-process -name "WRSA"
         Remove-Item "c:\program files (x86)\Webroot\" -Recurse -Force
@@ -25,6 +26,7 @@ elseif(Test-Path -path "C:\Program Files\Webroot\"){
     .\wrsa.exe -uninstall
     Start-Sleep -s 30
     try{
+        Set-Location "C:\windows\system32"
         Get-process -name "WRSA"
         Stop-process -name "WRSA"
         Remove-Item "c:\program files\Webroot\" -Recurse -Force
