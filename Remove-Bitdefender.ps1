@@ -2,11 +2,12 @@
 # Created by Justin Wilson
 
 $product = "Bitdefender"
-$filePath = "C:\temp"
-$fileName = "C:\temp\BEST_uninstallTool.exe"
+$filePath = "C:\temp\BitDefender"
+$fileName = "C:\temp\BitDefender\BEST_uninstallTool.exe"
 $url = "https://download.bitdefender.com/SMB/Hydra/release/bst_win/uninstallTool/BEST_uninstallTool.exe"
 
 try {
+    
     Start-BitsTransfer -source $url -Destination $filepath
 }
 catch {
@@ -20,7 +21,7 @@ if (test-path -path $fileName){
         Expand-Archive -LiteralPath $fileName -DestinationPath $filePath
         #Write-Host "Expansion Complete - Attempting to uninstall $($product)..."
         Start-Sleep -s 5
-        Set-Location "c:\temp"
+        Set-Location "c:\temp\BitDefender"
         try {
             .\BEST_uninstallTool.exe /nowait
         }
