@@ -7,7 +7,12 @@ $fileName = "C:\temp\BitDefender\BEST_uninstallTool.exe"
 $url = "https://download.bitdefender.com/SMB/Hydra/release/bst_win/uninstallTool/BEST_uninstallTool.exe"
 
 try {
-    
+    #check if the directory exists
+    if (!(test-path -path $filePath)){
+        #Write-Host "Creating $($filePath)"
+        New-Item -ItemType Directory -Path $filePath
+    }
+
     Start-BitsTransfer -source $url -Destination $filepath
 }
 catch {
@@ -20,14 +25,24 @@ if (test-path -path $fileName){
     try {
         Expand-Archive -LiteralPath $fileName -DestinationPath $filePath
         #Write-Host "Expansion Complete - Attempting to uninstall $($product)..."
-        Start-Sleep -s 5
-        Set-Location "c:\temp\BitDefender"
+        Start-Sleep -s 2
+        
+        #Run the uninstaller
         try {
-            .\BEST_uninstallTool.exe /nowait
+            Start-Process -FilePath $filename
+            #Write-Host "Uninstallation Complete"
+            #Write-Host "Exiting..."
         }
         catch {
             #Write-Host "Uninstallation failed"
             #Write-Host "Exiting..."
+        }
+        #cleanup the files
+        try {
+            Remove-Item -Path $filePath -Force -Recurse
+        }
+        catch{
+
         }
         
     }
