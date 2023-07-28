@@ -10,34 +10,34 @@ try {
     Start-BitsTransfer -source $url -Destination $filepath
 }
 catch {
-    Write-Host "Unable to start file download, check permissions on $($filePath) or URL"
+    #Write-Host "Unable to start file download, check permissions on $($filePath) or URL"
 }
 
 Start-Sleep -s 5
 if (test-path -path $fileName){
-    Write-host "Found $($product) Removal Tool - Expanding archive"
+    #Write-host "Found $($product) Removal Tool - Expanding archive"
     try {
         Expand-Archive -LiteralPath $fileName -DestinationPath $filePath
-        Write-Host "Expansion Complete - Attempting to uninstall $($product)..."
+        #Write-Host "Expansion Complete - Attempting to uninstall $($product)..."
         Start-Sleep -s 5
         Set-Location "c:\temp"
         try {
             .\BEST_uninstallTool.exe /nowait
         }
         catch {
-            Write-Host "Uninstallation failed"
-            Write-Host "Exiting..."
+            #Write-Host "Uninstallation failed"
+            #Write-Host "Exiting..."
         }
         
     }
     catch {
-        Write-host "Failed to expand archive"
-        Write-host "Exiting..."
+        #Write-host "Failed to expand archive"
+        #Write-host "Exiting..."
         Exit
     }
 
 }
 else{
-    Write-Host "$($product) Removal Tool not found - $($filepath)"
-    Write-Host "Exiting..."
+    #Write-Host "$($product) Removal Tool not found - $($filepath)"
+    #Write-Host "Exiting..."
 }
